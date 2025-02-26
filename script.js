@@ -116,7 +116,7 @@ const renderEmployees = (filteredEmployees = employees) => {
     employeesList.innerHTML = "";
     filteredEmployees.forEach((emp) => {
         const employee = document.createElement("span");
-        employee.classList.add("employees_names--item", "fade-in");
+        employee.classList.add("employees_names--item", "fade");
         if (parseInt(selectedEmployeeId, 10) === emp.id) {
             employee.classList.add("selected");
             selectedEmployee = emp;
@@ -124,14 +124,14 @@ const renderEmployees = (filteredEmployees = employees) => {
         employee.setAttribute("id", emp.id);
         employee.innerHTML = `${emp.firstName} ${emp.lastName} <i class="employeeDelete">&#10060;</i>`;
         employeesList.append(employee);
-        setTimeout(() => employee.classList.remove("fade-in"), 500);
+        setTimeout(() => employee.classList.remove("fade"), 500);
     });
 };
 
 // Render Single Employee
 const renderSingleEmployee = () => {
     employeesInfo.innerHTML = selectedEmployeeId === -1 ? "" : `
-        <div class="card fade-in">
+        <div class="card fade">
             <img src="${selectedEmployee.imageUrl}" alt="photo.jpeg" />
             <div class="employee-details">
                 <span class="employees_single--heading">
@@ -143,5 +143,5 @@ const renderSingleEmployee = () => {
                 <span>DOB - ${selectedEmployee.dob}</span>
             </div>
         </div>`;
-    setTimeout(() => document.querySelector(".card")?.classList.remove("fade-in"), 500);
+    setTimeout(() => document.querySelector(".card")?.classList.remove("fade"), 500);
 };
