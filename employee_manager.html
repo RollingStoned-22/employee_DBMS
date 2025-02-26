@@ -7,18 +7,25 @@
     <title>Employee Database Management System</title>
 </head>
 <body>
-    <div id="app">
-        <header class="header">
-            <h1>Employee Database Management</h1>
-            <button class="createEmployee">
-                Add Employee
-            </button>
+    <div id="app" class="container">
+        <header>
+            <h1>Employee Management</h1>
+            <button class="themeToggle">🌙 Toggle Theme</button>
         </header>
+
+        <section class="controls">
+            <input type="text" class="searchEmployee" placeholder="Search employees...">
+            <select class="sortEmployees">
+                <option value="name">Sort by Name</option>
+                <option value="age">Sort by Age</option>
+            </select>
+            <button class="createEmployee">Add Employee</button>
+        </section>
 
         <div class="employees">
             <div class="employees_names">
                 <span class="employees_names--title">
-                    Employee List
+                    <center>Employee List</center>
                 </span>
                 <div class="employees_names--list"></div>
             </div>

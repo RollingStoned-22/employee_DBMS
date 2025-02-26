@@ -1,110 +1,260 @@
 :root {
     --btn: #dbdbdb;
     --btn-hover: #cacaca;
-    --item-bg: #f0f0f0;
-    --modal-bg: rgba(141,141,141,0.541);
+    --item-bg: #f8f9fa;
+    --modal-bg: rgba(141, 141, 141, 0.6);
+    --card-bg: rgba(255, 255, 255, 0.2);
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-body{
-    font-family: sans-serif;
-    padding: 0 10px;
+/* Fade Animations */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.header{
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode button {
+    background-color: #444;
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Search & Sort */
+.search-container {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.searchEmployee {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.sortEmployees {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+/* Theme Toggle */
+.themeToggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: "Arial", sans-serif;
+    padding: 0 10px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.header > button{
-    padding: 10px 15px;
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+.header button {
+    padding: 12px 15px;
     border-radius: 20px;
     border: none;
     background-color: var(--btn);
     cursor: pointer;
+    transition: 0.3s;
 }
-.header > button:hover{
+.header button:hover {
     background-color: var(--btn-hover);
 }
 
-.employees{
+.employees {
     display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 900px;
 }
 
-.employees > div{
-    border: 1px solid black;
-    overflow-y: scroll;
-    height: 450px;
+.employees > div {
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 100%;
+    box-shadow: var(--card-shadow);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
 }
 
 .employees_names {
-    width: 30%;
+    width: 45%;
+    padding: 20px;
 }
+
 .employees_single {
     width: 70%;
+    padding: 100px;
 }
 
-.employees_names,
-.employees_single{
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.employees_names-title,
-.employees_single--title{
-    padding-bottom: 10px;
-    margin-bottom: 5px;
+.employees_names--title,
+.employees_single--title {
+    padding-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
-    border-bottom: 1px solid black;
+    font-weight: bold;
+    border-bottom: 2px solid #ffffff55;
 }
 
-
-.employees_names--list{
+.employees_names--list {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
-.employees_names--item{
+.employees_names--item {
     cursor: pointer;
-    padding: 10px 15px;
-    margin-bottom: 5px;
+    padding: 12px;
     text-align: center;
     background-color: var(--item-bg);
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-radius: 8px;
+    transition: background 0.3s;
+    font-weight: bold;
 }
 .employees_names--item:hover,
-.selected{
+.selected {
     background-color: var(--btn);
 }
 
-.employees_single--heading{
+.employees_single--heading {
     text-align: center;
-    font-size: 25px;
+    font-size: 27px;
+    font-weight: bold;
     text-transform: uppercase;
-    padding: 5px;
+    margin-bottom: 10px;
 }
-.employees_single--info{
+
+.employees_single--info {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-.employees_single--info > img {
-    width: 250px;
-    height: 250px;
-    object-fit: contain;
+
+.employees_single--info img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
     border-radius: 50%;
+    border: 3px solid white;
 }
 
-.addEmployee{
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Employee Details Inside Card */
+.card .employee-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.employee-details span {
+    font-weight: bold;
+}
+
+.addEmployee {
     display: none;
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     justify-content: center;
@@ -112,28 +262,29 @@ body{
     background-color: var(--modal-bg);
 }
 
-.addEmployee_create{
-    width: 400px;
+.addEmployee_create {
+    width: 600px;
     background-color: white;
-    box-shadow:  0 0 50px grey;
+    box-shadow: 0 0 50px grey;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.addEmployee_create > div {
+.addEmployee_create div {
     display: grid;
-    grid-template-columns: 48.1% 48.1%;
-    column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-.addEmployee_create > input {
-    padding: 5px 10px;
+.addEmployee_create input {
+    padding: 8px;
     border-radius: 5px;
-    border: 1px solid rgb(236, 236, 236);
+    border: 1px solid #ccc;
+    width: 100%;
 }
 
 .addEmployee_create input::-webkit-outer-spin-button,
@@ -142,14 +293,59 @@ body{
     margin: 0;
 }
 
-.addEmployee_create--submit{
+.addEmployee_create--submit {
     padding: 10px;
     border-radius: 5px;
     border: none;
     background-color: var(--btn);
     cursor: pointer;
+    transition: 0.3s;
 }
-
-.addEmployee_create--submit:hover{
+.addEmployee_create--submit:hover {
     background-color: var(--btn-hover);
 }
+
+button {
+    background: #ff7b00;
+    color: rgb(43, 42, 42);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background: #ff5500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .employees {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .employees > div {
+        width: 100%;
+    }
+
+    .employees_names {
+        width: 100%;
+    }
+
+    .employees_single {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
+}
+
